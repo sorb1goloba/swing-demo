@@ -7,8 +7,36 @@
  * user guide available at http://gradle.org/docs/2.2.1/userguide/tutorial_java_projects.html
  */
 
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'edu.sc.seis.gradle:launch4j:2.4.6'
+  }
+}
+
+repositories {
+  jcenter()
+}
+
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
+apply plugin: 'edu.sc.seis.launch4j'
+
+
+
+launch4j {
+  mainClassName = 'SwingDemo'
+}
+
+task createMyApp(type: edu.sc.seis.launch4j.tasks.Launch4jExternalTask) {
+    launch4jCmd = 'launch4j-test'
+    outfile = 'MyApp.exe'
+}
+
+
+
 
 // In this section you declare where to find the dependencies of your project
 repositories {
